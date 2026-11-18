@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FOOTBALL AI ANALYZER</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <header class="topbar"><div class="brand"><div class="brand-mark">⚽</div><div><div class="brand-name">FOOTBALL <span>AI</span></div><div class="brand-sub">ADVANCED MATCH INTELLIGENCE</div></div></div><div class="status"><i id="statusDot"></i><span id="statusText">جارٍ فحص مصدر البيانات</span></div></header>
+  <section class="hero"><div><div class="eyebrow">منصة تحليل كرة القدم</div><h1>اقرأ المباراة<br><span>بالأرقام، لا بالتخمين.</span></h1><p>أدخل الفريقين، اجمع آخر النتائج، وافحص أكثر من 40 مؤشراً تحليلياً في تقرير واحد.</p></div><div class="hero-ball">⚽</div></section>
+  <section class="panel match-panel"><div class="section-head"><div><span class="step">01 / MATCH INPUT</span><h2>حدد المواجهة</h2></div><span class="pill">تحليل قبل المباراة</span></div>
+    <div class="match-grid">
+      <div class="team-field"><label>الفريق الأول (صاحب الأرض)</label><div class="search-wrap"><input id="teamAInput" placeholder="ابحث عن النادي..." autocomplete="off"><button class="search-btn" onclick="searchTeam('A')">بحث</button></div><div id="teamAResults" class="results"></div><div id="teamASelected" class="selected">لم يتم اختيار فريق</div></div>
+      <div class="versus">VS</div>
+      <div class="team-field"><label>الفريق الثاني (خارج الأرض)</label><div class="search-wrap"><input id="teamBInput" placeholder="ابحث عن النادي..." autocomplete="off"><button class="search-btn" onclick="searchTeam('B')">بحث</button></div><div id="teamBResults" class="results"></div><div id="teamBSelected" class="selected">لم يتم اختيار فريق</div></div>
+    </div>
+    <div class="options-row"><div><label for="season">الموسم (اختياري)</label><input id="season" type="number" placeholder="مثلاً 2026" min="2000" max="2100"></div><div class="hint">اختر الفريقين من نتائج البحث حتى يستخدم الموقع المعرّفات الصحيحة.</div></div>
+    <button id="analyzeBtn" class="primary" onclick="runAnalysis()"><span>✦</span> ابدأ التحليل الشامل <b>←</b></button><div id="errorBox" class="error hidden"></div>
+  </section>
+
+  <section id="report" class="hidden">
+    <div class="report-head"><div><span class="step">02 / ANALYSIS REPORT</span><h2>تقرير المباراة</h2><p id="generatedAt" class="muted"></p></div><button class="outline" onclick="window.print()">طباعة التقرير ⎙</button></div>
+    <div id="summaryCards" class="summary-grid"></div>
+    <div class="panel"><div class="section-head"><div><span class="step">MODEL OUTPUT</span><h3>الاحتمالات التقديرية</h3></div><span class="pill amber">نموذج أولي</span></div><div id="modelBox"></div></div>
+    <div class="panel"><div class="section-head"><div><span class="step">TEAM COMPARISON</span><h3>مقارنة الفريقين</h3></div></div><div id="comparison"></div></div>
+    <div class="panel"><div class="section-head"><div><span class="step">40+ ANALYSIS POINTS</span><h3>قائمة التحليل التفصيلية</h3></div></div><div id="analysisPoints" class="points-grid"></div></div>
+    <div class="panel"><div class="section-head"><div><span class="step">RECENT FORM</span><h3>آخر المباريات المكتملة</h3></div></div><div id="recentMatches" class="recent-grid"></div></div>
+    <div id="warnings" class="warning-list"></div>
+  </section>
+  <section class="panel modules"><div class="section-head"><div><span class="step">ANALYSIS ENGINE</span><h2>ماذا يفحص النظام؟</h2></div><span class="pill green">44 معياراً</span></div><div id="moduleList" class="module-grid"></div></section>
+  <footer>FOOTBALL AI ANALYZER <span>•</span> أداة تحليل إحصائي وليست ضماناً للنتائج أو توصية بالمراهنة.</footer>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
